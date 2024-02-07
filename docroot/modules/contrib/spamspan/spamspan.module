@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Implements the spamspan technique for hiding email addresses from spambots.
+ *
+ * @see http://www.spamspan.com
+ *
+ * If javascript is disabled on the client-side, addresses appear as
+ * example [at] example [dot] com.
+ *
+ * @copyright 2006-2010, Lawrence Akka
+ * @license http://www.gnu.org/licenses/gpl.txt  GPL v 2.0
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function spamspan_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.spamspan':
+      return t(
+        '<p>The SpamSpan module obfuscates email addresses to help prevent spambots from collecting them. See the <a href="@url">Spamspan test page</a>.</p>',
+        [
+          '@url' => Url::fromRoute('spamspan.test')->toString(),
+        ]
+      );
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function spamspan_theme($existing, $type, $theme, $path) {
+  return [
+    'spamspan_at_sign' => [
+      'variables' => [
+        'path' => base_path() . \Drupal::service('extension.list.module')->getPath('spamspan') . '/image.gif',
+        'settings' => [],
+      ],
+    ],
+  ];
+}

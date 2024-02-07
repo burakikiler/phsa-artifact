@@ -1,0 +1,9 @@
+name: PHSA Migration
+type: module
+description: PHSA Migration module.
+package: phsa
+core_version_requirement: ^9 || ^10
+dependencies:
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
+  - migrate_file_to_media:migrate_file_to_media

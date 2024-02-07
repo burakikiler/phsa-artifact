@@ -1,0 +1,8 @@
+section_actions_position: 'left'
+enable_redirect_on_save: false
+enable_configure_ajax_save: false
+remove_empty_divs: false
+enable_drag_handle_icon: false
+enable_admin_css: false
+contextual_links_only_lb: false
+contextual_links_roles: false

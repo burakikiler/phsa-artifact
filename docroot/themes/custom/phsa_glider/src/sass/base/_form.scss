@@ -1,0 +1,6 @@
+@layer base {
+  input[type="text"],
+  textarea {
+    @apply text-black border-black placeholder:text-black rounded p-3;
+  }
+}

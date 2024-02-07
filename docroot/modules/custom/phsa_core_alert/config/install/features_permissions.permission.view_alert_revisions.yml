@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: view_alert_revisions
+label: 'view alert revisions'
+roles:
+  - content_editor

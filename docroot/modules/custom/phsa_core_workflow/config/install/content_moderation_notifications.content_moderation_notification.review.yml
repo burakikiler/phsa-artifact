@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies: {  }
+id: review
+workflow: editorial
+transitions:
+  needs_review: needs_review
+roles:
+  content_editor: content_editor
+author: false
+site_mail: false
+emails: ''
+subject: 'Content for review'
+body:
+  value: '<p>[node:title]&nbsp;has been sent for approval by&nbsp;[node:author] ([node:author:mail]).</p><p>To review the content, please go to [node:url]</p>'
+  format: legacy_html
+label: 'For review'

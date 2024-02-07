@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: delete_own_alert_content
+label: 'delete own alert content'
+roles:
+  - content_editor

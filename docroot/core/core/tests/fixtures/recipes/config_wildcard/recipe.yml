@@ -1,0 +1,8 @@
+name: 'Config wildcard'
+type: 'Testing'
+install:
+  - config_test
+  - tour
+config:
+  import:
+    config_test: '*'

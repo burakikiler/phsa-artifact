@@ -1,0 +1,19 @@
+name: Media
+type: module
+core_version_requirement: '^9.4 || ^10'
+dependencies:
+  - 'crop:crop'
+  - 'drupal:field'
+  - 'drupal:file'
+  - 'drupal:image'
+  - 'drupal:language'
+  - 'drupal:media'
+  - 'drupal:media_library'
+  - 'drupal:path'
+  - 'drupal:user'
+  - 'drupal:views'
+  - 'oembed_providers:oembed_providers'
+  - 'phsa_media:phsa_media'
+  - 'scheduler:scheduler'
+  - 'svg_image_field:svg_image_field'
+package: 'PHSA Core'

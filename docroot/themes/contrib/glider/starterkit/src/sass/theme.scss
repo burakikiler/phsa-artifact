@@ -1,0 +1,18 @@
+$include-font: true;
+@import "core";
+
+/*! purgecss start ignore */
+@import "placeholders/index";
+
+/* Icons */
+@import "theme-icons"; /* This file will be generated dynamically in the build task */
+@import "theme-icons-classes";
+
+/* Site styles */
+@import "utils/index";
+@import "animations/index";
+
+/* Shame */
+@import "shame";
+
+/*! purgecss end ignore */

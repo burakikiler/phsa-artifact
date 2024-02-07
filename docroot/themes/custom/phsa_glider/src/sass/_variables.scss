@@ -1,0 +1,13 @@
+/*
+* Theme variables.
+* These variables will override bootstrap defaults.
+* To override more variables take a look at @node_modules/bootstrap/scss/_variables.scss
+*/
+
+/* Fonts */
+$font-primary: sans-serif;
+$font-secondary: serif;
+$font-icons: "theme-icons";
+
+$desktop-breakpoint: lg;
+$tablet-breakpoint: md;

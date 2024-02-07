@@ -1,0 +1,5 @@
+@layer base {
+  a {
+    @apply uppercase transition text-primary no-underline hover:underline;
+  }
+}

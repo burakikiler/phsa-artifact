@@ -1,0 +1,33 @@
+id: image_news
+label: 'PHSA Media'
+langcode: en
+status: true
+dependencies: {  }
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - news
+  - media
+migration_group: phsa
+source:
+  plugin: external_media_mapping
+  file_type: image
+  source_bundle: news
+  base_url: http://www.bcmhsus.ca
+process:
+  bundle:
+    plugin: default_value
+    default_value: image
+  name: file_name
+  field_media_image/target_id:
+    plugin: media_file_copy
+    move: FALSE
+    reuse: TRUE
+    source: full_url
+destination:
+  plugin: entity:media
+migration_dependencies:
+  required: { }
+  optional:
+    - node_news
