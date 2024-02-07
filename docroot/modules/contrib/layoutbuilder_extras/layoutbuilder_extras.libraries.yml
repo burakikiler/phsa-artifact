@@ -1,0 +1,41 @@
+drag_handle:
+  version: 1.0.0
+  css:
+    theme:
+      assets/css/drag_handle.css: {}
+  dependencies:
+    - layoutbuilder_extras/root
+
+admin:
+  version: 1.x
+  css:
+    theme:
+      assets/css/admin.css: {}
+  dependencies:
+    - layoutbuilder_extras/root
+
+admin_section_library:
+  version: 1.x
+  css:
+    theme:
+      assets/css/admin_section_library.css: {}
+  dependencies:
+    - layoutbuilder_extras/root
+
+root:
+  version: 1.x
+  css:
+    theme:
+      assets/css/root.css: {}
+
+admin_section_actions_top:
+  version: 1.x
+  css:
+    theme:
+      assets/css/admin_section_actions_top.css: { }
+
+admin_section_actions_left:
+  version: 1.x
+  css:
+    theme:
+      assets/css/admin_section_actions_left.css: { }

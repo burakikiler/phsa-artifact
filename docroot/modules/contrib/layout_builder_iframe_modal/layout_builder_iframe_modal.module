@@ -1,0 +1,154 @@
+<?php
+
+/**
+ * @file
+ * Enables the iframe renderer for layout builder.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\layout_builder_iframe_modal\Controller\RebuildController;
+
+/**
+ * Implements hook_theme().
+ */
+function layout_builder_iframe_modal_theme() {
+  return [
+    'lbim_iframe' => [
+      'variables' => [
+        'iframe_attributes' => NULL,
+      ],
+    ],
+    'lbim_redirect' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function layout_builder_iframe_modal_preprocess_html(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if (\Drupal::service('layout_builder_iframe_modal.helper')->isModalRoute($route_name)) {
+    // Removes regions and elements not needed for the block edit form.
+    unset($variables['page_top']);
+    unset($variables['page']['header']);
+    unset($variables['page']['pre_content']);
+    unset($variables['page']['breadcrumb']);
+    unset($variables['page']['#title']);
+  }
+}
+
+/**
+ * Implements hook_contextual_links_alter().
+ */
+function layout_builder_iframe_modal_contextual_links_alter(array &$links, $group, array $route_parameters) {
+  $keys = [
+    'layout_builder_block_update',
+    'layout_builder_block_remove',
+    'layout_builder_block_move',
+    'layout_builder_inline_block_update',
+  ];
+
+  if (\Drupal::service('module_handler')->moduleExists('layout_builder_st')) {
+    $keys[] = 'layout_builder_block_translate';
+    $keys[] = 'layout_builder_inline_block_translate';
+  }
+
+  foreach ($keys as $key) {
+    if (isset($links[$key])) {
+      $open = FALSE;
+      switch($key) {
+        case 'layout_builder_block_update':
+        case 'layout_builder_inline_block_update':
+          $open = \Drupal::service('layout_builder_iframe_modal.helper')->isModalRoute('layout_builder.update_block');
+          break;
+        case 'layout_builder_block_remove':
+          $open = \Drupal::service('layout_builder_iframe_modal.helper')->isModalRoute('layout_builder.remove_block');
+          break;
+        case 'layout_builder_block_move':
+          $open = \Drupal::service('layout_builder_iframe_modal.helper')->isModalRoute('layout_builder.move_block_form');
+          break;
+        default:
+          break;
+      }
+      if ($open) {
+        $links[$key]['localized_options']['attributes']['data-dialog-type'] = 'iframe';
+        unset($links[$key]['localized_options']['attributes']['data-dialog-renderer']);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_link_alter().
+ */
+function layout_builder_iframe_modal_link_alter(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  // Only change links on layout builder routes.
+  if ($route_name === NULL || strpos($route_name, 'layout_builder') === FALSE) {
+    return;
+  }
+
+  // Only change links that open in a dialog.
+  if (empty($variables['options']['attributes']['data-dialog-type'])) {
+    return;
+  }
+
+  /** @var Drupal\Core\Url $url */
+  $url = $variables['url'];
+
+  if (!$url || !$url->isRouted()) {
+    return;
+  }
+
+  $link_route_name = $url->getRouteName();
+  if (\Drupal::service('layout_builder_iframe_modal.helper')->isModalRoute($link_route_name)) {
+    $variables['options']['attributes']['data-dialog-type'] = 'iframe';
+    unset($variables['options']['attributes']['data-dialog-renderer']);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function layout_builder_iframe_modal_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // \Drupal\layout_builder\Form\ConfigureBlockFormBase::doBuildForm sets an
+  // ajax handler on the main submit action for the form whenever any element
+  // on the form is rebuilt using ajax. This is then cached and a subsequent
+  // form submission can be processed as ajax even when we don't want that.
+  // This module never wants the submit action to be ajax, so we ensure that.
+  // See https://www.drupal.org/project/layout_builder_iframe_modal/issues/3202523
+  if (in_array($form_id, ['layout_builder_add_block','layout_builder_update_block'])) {
+    if (!empty($form['actions']['submit']['#ajax'])) {
+      unset($form['actions']['submit']['#ajax']);
+    }
+  }
+
+  if (strpos($form_id, 'layout_builder_form') === FALSE) {
+    return;
+  }
+
+  /** @var \Drupal\layout_builder\SectionStorageInterface $section_storage */
+  $section_storage = \Drupal::routeMatch()->getParameter('section_storage');
+
+  if (!$section_storage) {
+    return;
+  }
+
+  $is_translation = isset($form['layout_builder__translation']['widget']);
+  $url = RebuildController::buildRouteUrl($section_storage, $is_translation);
+  $url->setOption('attributes', [
+    'class' => ['use-ajax', 'button'],
+    'data-disable-refocus' => 'true',
+  ]);
+
+  $form['actions']['rebuild-layout'] = [
+    '#type' => 'link',
+    '#weight' => 16,
+    '#title' => t('Rebuild layout'),
+    '#url' => $url,
+  ];
+}

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: revert_alert_revisions
+label: 'revert alert revisions'
+roles:
+  - content_editor

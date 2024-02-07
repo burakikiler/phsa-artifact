@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.legacy_html
+  module:
+    - filter
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'use text format legacy_html'

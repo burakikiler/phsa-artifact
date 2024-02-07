@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.rich_content.field_body
+    - paragraphs.paragraphs_type.rich_content
+  module:
+    - text
+id: paragraph.rich_content.default
+targetEntityType: paragraph
+bundle: rich_content
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

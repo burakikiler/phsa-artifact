@@ -1,0 +1,15 @@
+langcode: en
+status: false
+dependencies: {  }
+id: local
+label: Local
+description: ''
+weight: 1
+stackable: false
+no_patching: false
+storage: null
+folder: ../config/envs/local
+module: {  }
+theme: {  }
+complete_list: {  }
+partial_list: {  }

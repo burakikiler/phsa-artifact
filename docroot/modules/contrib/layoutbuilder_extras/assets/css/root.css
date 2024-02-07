@@ -1,0 +1,10 @@
+:root {
+  --layout_builder_extras_blue: #0054ae;
+  --layout_builder_extras_green: #28a745;
+  --layout_builder_extras_white: #ffffff;
+  --layout_builder_extras_gray: #ccc;
+  --layout_builder_extras_red: #dc3545;
+  --layout_builder_extras_red_dark: #dc3545;
+  --layout_builder_extras_black: #343a40;
+  --layout_builder_extras_color_transparent: transparent;
+}

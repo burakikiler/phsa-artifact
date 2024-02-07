@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.news.field_content
+    - field.field.node.news.field_date
+    - field.field.node.news.field_summary
+    - field.field.node.news.field_teaser_image
+    - node.type.news
+  module:
+    - user
+id: node.news.teaser
+targetEntityType: node
+bundle: news
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  field_content: true
+  field_date: true
+  field_summary: true
+  field_teaser_image: true
+  langcode: true
+  search_api_excerpt: true

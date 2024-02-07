@@ -1,0 +1,4 @@
+layoutbuilder_extras.settings:
+  route_name: layoutbuilder_extras.settings_form
+  title: 'Layout builder extras settings'
+  base_route: layoutbuilder_extras.settings_form

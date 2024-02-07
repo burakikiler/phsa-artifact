@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: create_alert_content
+label: 'create alert content'
+roles:
+  - content_editor

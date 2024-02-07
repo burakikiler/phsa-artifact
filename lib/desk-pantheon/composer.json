@@ -1,0 +1,23 @@
+{
+    "name": "evolvingweb/desk-pantheon",
+    "type": "project",
+    "require": {
+        "composer-plugin-api": "^2.0",
+        "composer-runtime-api": "^2.0",
+        "pantheon-systems/drupal-integrations": "^10.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "file-mapping": {
+                "[project-root]/pantheon.yml": "assets/default.pantheon.yml",
+                "[web-root]/private/scripts/drush_deploy.php": "assets/drush_deploy.php"
+            },
+            "allowed-packages": [
+                "pantheon-systems/drupal-integrations"
+            ]
+        }
+    }
+}

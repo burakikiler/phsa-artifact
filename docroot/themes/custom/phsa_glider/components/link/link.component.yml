@@ -1,0 +1,85 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Link
+status: stable
+props:
+  type: object
+  required:
+    - text
+    - url
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+    text:
+      type: string
+      title: Text
+      description: Link text
+      examples:
+        - Link Text
+    style:
+      type: string
+      title: Link style
+      description: Link style type
+      enum:
+        - primary
+        - secondary
+        - tertiary
+      default: primary
+      examples:
+        -
+    size:
+      type: string
+      title: Size
+      description: Link Size
+      enum:
+        - sm
+        - lg
+      default: lg
+      examples:
+    outline:
+      type: boolean
+      title: Outline
+      description: Is the link outlined?
+      default: false
+      examples:
+        -
+    stretch:
+      type: boolean
+      title: Stretch
+      description: Is the link stretched?
+      default: false
+      examples:
+        - false
+    url:
+      type: string
+      title: Url
+      description: Url for the link
+      examples:
+        - https://beneva.ca
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Set the disable state of the link.
+      default: false
+      examples:
+        - false
+    dark:
+      type: boolean
+      title: Dark
+      description: Is the link dark?
+      default: false
+      examples:
+        - true
+    className:
+      type: string
+      title: className
+      description: className
+      examples:
+        - my-custom-class
+    props:
+      type: object
+      title: Properties
+      description: Extra attributes for the link
+      examples:
+        - class: my-custom-class
+          id: my-custom-id
+          data-custom: my-custom-data

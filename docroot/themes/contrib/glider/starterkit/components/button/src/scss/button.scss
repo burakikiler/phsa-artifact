@@ -1,0 +1,7 @@
+@import "core";
+
+.btn {
+  $component: &;
+
+  @apply bg-blue-400 text-white;
+}

@@ -1,0 +1,7 @@
+{% extends 'components:button' %}
+
+{% block content %}
+  {% if text %}
+    <a {{ attributes }}>{{ text }}</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: edit_own_alert_content
+label: 'edit own alert content'
+roles:
+  - content_editor

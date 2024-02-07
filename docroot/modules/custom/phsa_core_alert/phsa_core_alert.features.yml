@@ -1,0 +1,4 @@
+bundle: phsa_core
+excluded:
+  - user.role.content_editor
+required: true

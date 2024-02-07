@@ -1,0 +1,7 @@
+name: 'PHSA Workflow'
+description: 'Content moderation, Scheduled publishing'
+type: module
+core_version_requirement: '^9.4 || ^10'
+dependencies:
+  - 'content_moderation_notifications:content_moderation_notifications'
+package: 'PHSA Core'

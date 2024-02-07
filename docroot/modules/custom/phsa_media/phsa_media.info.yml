@@ -1,0 +1,8 @@
+name: 'PHSA Media'
+type: module
+description: 'Provides a custom logic for the media functionality.'
+package: PHSA
+core_version_requirement: ^10
+dependencies:
+  - drupal:media
+  - oembed_providers:oembed_providers

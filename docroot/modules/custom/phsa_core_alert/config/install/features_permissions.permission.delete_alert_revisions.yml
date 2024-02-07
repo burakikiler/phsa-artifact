@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.alert
+id: delete_alert_revisions
+label: 'delete alert revisions'
+roles:
+  - content_editor
