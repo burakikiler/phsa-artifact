@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.referral.body
+    - field.field.node.referral.field_referral_process_documents
+    - field.field.node.referral.field_referral_process_steps
+    - field.field.node.referral.field_referral_process_text
+    - field.field.node.referral.field_referral_related_content
+    - field.field.node.referral.field_referral_related_program
+    - node.type.referral
+  module:
+    - user
+id: node.referral.teaser
+targetEntityType: node
+bundle: referral
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_referral_process_documents: true
+  field_referral_process_steps: true
+  field_referral_process_text: true
+  field_referral_related_content: true
+  field_referral_related_program: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,10 @@
+name: 'PHSA Paragraphs'
+description: 'Manages all the paragraph types that need to be installed across all PHSA sites.'
+type: module
+core_version_requirement: '^9.4 || ^10'
+dependencies:
+  - 'drupal:field'
+  - 'drupal:text'
+  - 'paragraphs:paragraphs'
+  - 'phsa_core_configuration:phsa_core_configuration'
+package: 'PHSA Core'

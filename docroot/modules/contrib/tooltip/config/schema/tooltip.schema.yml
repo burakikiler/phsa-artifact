@@ -1,0 +1,15 @@
+# Plugin \Drupal\tooltip\Plugin\CKEditor5Plugin\Tooltip
+ckeditor5.plugin.tooltip_tooltip:
+  type: mapping
+  label: Tooltips
+  mapping:
+    tooltip_label:
+      type: string
+      label: 'Tooltip label'
+      constraints:
+        NotNull: []
+    tooltip_hint:
+      type: string
+      label: 'Tooltip hint'
+      constraints:
+        NotNull: []

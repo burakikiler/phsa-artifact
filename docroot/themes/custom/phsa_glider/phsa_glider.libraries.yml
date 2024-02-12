@@ -1,0 +1,35 @@
+# Use `bootstrap.bundle.min.js` for bundle import (not require popper.js)
+# Or use partial import to bring in the bootstrap component you need. Depends on
+# the component imported, popper.js will be needed.
+
+base:
+  version: VERSION
+  css:
+    base:
+      dist/css/base/base.min.css: { minified: true }
+    layout:
+      dist/css/layout/layout.min.css: { minified: true }
+      dist/css/layout/pages.min.css: { minified: true }
+    component:
+      dist/css/components/components.min.css: { minified: true }
+  js:
+    dist/js/bootstrap.custom.bundle.min.js: { minified: true}
+
+theme:
+  version: VERSION
+  css:
+    theme:
+      dist/css/theme.min.css: { minified: true }
+  js:
+    dist/js/theme.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+administrator:
+  css:
+    component:
+      dist/css/modules/administrator.module.min.css: { minified: true }
+  js:
+    dist/js/behaviors/administrator.min.js: { minified: true }

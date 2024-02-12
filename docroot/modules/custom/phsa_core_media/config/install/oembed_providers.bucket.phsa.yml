@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - oembed_providers.provider.phsa
+id: phsa
+label: 'PHSA: Remote Video'
+description: ''
+providers:
+  - PHSA
+  - Vimeo
+  - YouTube

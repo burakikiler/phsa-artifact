@@ -1,0 +1,24 @@
+01dev:
+    uri: bcmhsus.dev-ewsfpoc.acsitefactory.com
+    host: ewsfpoc01dev.ssh.enterprise-g1.acquia-sites.com
+    options: {  }
+    paths: { dump-dir: /mnt/tmp }
+    root: /var/www/html/ewsfpoc.01dev/docroot
+    user: ewsfpoc.01dev
+    ssh: { options: '-p 22' }
+01live:
+    uri: bcmhsus.ewsfpoc.acsitefactory.com
+    host: ewsfpoc01live.ssh.enterprise-g1.acquia-sites.com
+    options: {  }
+    paths: { dump-dir: /mnt/tmp }
+    root: /var/www/html/ewsfpoc.01live/docroot
+    user: ewsfpoc.01live
+    ssh: { options: '-p 22' }
+01test:
+    uri: bcmhsus.test-ewsfpoc.acsitefactory.com
+    host: ewsfpoc01test.ssh.enterprise-g1.acquia-sites.com
+    options: {  }
+    paths: { dump-dir: /mnt/tmp }
+    root: /var/www/html/ewsfpoc.01test/docroot
+    user: ewsfpoc.01test
+    ssh: { options: '-p 22' }

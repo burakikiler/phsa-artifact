@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: rich_content
+label: 'Rich Content'
+icon_uuid: null
+icon_default: null
+description: 'Rich Content Paragraph'
+behavior_plugins: {  }

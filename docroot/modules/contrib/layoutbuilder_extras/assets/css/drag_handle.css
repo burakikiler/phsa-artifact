@@ -1,0 +1,17 @@
+/* Needed so that resizing the offcanvas also resizes the content. */
+.ui-dialog-off-canvas #drupal-off-canvas {
+  width: auto !important;
+}
+/* Handle BAR */
+.ui-dialog-off-canvas.ui-resizable .ui-resizable-handle:after {
+  content: url('/modules/contrib/layoutbuilder_extras/assets/img/drag_handle.png');
+  display: block;
+  transform: rotate(90deg) translateY(21px);
+  background: var(--layout_builder_extras_black);
+  position: absolute;
+  top: 50%;
+  left: -26px;
+  padding: 10px;
+  width: 38px;
+  height: 15px;
+}

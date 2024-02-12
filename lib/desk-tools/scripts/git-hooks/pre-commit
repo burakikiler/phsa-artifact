@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$IS_DDEV_PROJECT" = true ] ; then
+  echo 'Commiting inside of container'
+  /var/www/html/vendor/acquia/blt/scripts/git-hooks/pre-commit $@;
+  exit $?
+else
+  echo 'Commiting outside of container'
+  ddev exec /var/www/html/vendor/acquia/blt/scripts/git-hooks/pre-commit $@;
+  exit $?
+fi

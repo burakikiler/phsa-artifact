@@ -1,0 +1,27 @@
+# If using yml to configure plugins, rename this to {module_name}.ckeditor5.yml.
+# If using annotations, this file can be removed.
+# @see https://www.drupal.org/docs/drupal-apis/plugin-api/annotations-based-plugins
+#   For information on using annotations to define plugins.
+# @see the CKEditor 5 module's README.md for more details regarding plugin
+#   configuration options.
+# cSpell:ignore simplebox demobox
+
+tooltip_tooltip:
+  # Use the provider: property for this plugin to depend on another module.
+
+  # Configuration that will be sent to CKEditor 5 JavaScript plugins.
+  ckeditor5:
+    plugins: [tooltip.Tooltip]
+
+  # Configuration that will be used directly by Drupal.
+  drupal:
+    label: Tooltips
+    library: tooltip/tooltip-editor
+    admin_library: tooltip/admin.tooltip-editor
+    class: Drupal\tooltip\Plugin\CKEditor5Plugin\Tooltip
+    toolbar_items:
+      tooltip:
+        label: Tooltip
+    elements:
+      - <span>
+      - <span data-tooltip>

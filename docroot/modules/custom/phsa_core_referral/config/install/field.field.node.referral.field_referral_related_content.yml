@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_referral_related_content
+    - node.type.referral
+    - paragraphs.paragraphs_type.icon_card
+  module:
+    - entity_reference_revisions
+id: node.referral.field_referral_related_content
+field_name: field_referral_related_content
+entity_type: node
+bundle: referral
+label: 'Related content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      icon_card: icon_card
+    negate: 0
+    target_bundles_drag_drop:
+      cta:
+        weight: 7
+        enabled: false
+      html:
+        weight: 8
+        enabled: false
+      icon_card:
+        weight: 9
+        enabled: true
+      postcard:
+        weight: 10
+        enabled: false
+      referral_step:
+        weight: 11
+        enabled: false
+      rich_content:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

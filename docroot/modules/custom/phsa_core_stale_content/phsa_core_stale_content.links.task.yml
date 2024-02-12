@@ -1,0 +1,5 @@
+phsa_core_stale_content.stale_content_page:
+  title: Stale content
+  route_name: view.stale_content_moderation.stale_content_page
+  parent_id: system.admin_content
+  weight: 10

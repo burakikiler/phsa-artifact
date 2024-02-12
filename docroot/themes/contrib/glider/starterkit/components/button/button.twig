@@ -1,0 +1,46 @@
+{% set style = style ?? 'primary' %}
+{% set attributes = create_attribute() %}
+
+{% if props %}
+  {% for propName, propValue in props %}
+    {% set attributes = attributes.setAttribute(propName, propValue) %}
+  {% endfor %}
+{% endif %}
+
+{% set classes =  [
+  'btn inline-flex items-center justify-center',
+  style ? 'btn--' ~ style,
+  size ? 'btn--' ~ size,
+  outline ? 'btn--outline',
+  stretch ? 'link--stretched' : '',
+  dark ? 'btn--dark',
+  dark and style ? 'btn--' ~ style ~ '--dark',
+  className,
+] %}
+
+{% if url %}
+  {% set attributes = attributes.setAttribute('href', url) %}
+{% endif %}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{% if disabled %}
+  {% set attributes = attributes.addClass('btn--disabled') %}
+  {% if url %}
+    {% set attributes = attributes.setAttribute('aria-disabled', 'true') %}
+    {% set attributes = attributes.setAttribute('tabindex', '-1') %}
+    {% set attributes = attributes.setAttribute('role', 'button') %}
+  {% else %}
+    {% set attributes = attributes.setAttribute('disabled', '') %}
+  {% endif %}
+{% endif %}
+
+{% if cbername %}
+  {% set attributes = attributes.setAttribute('data-cbername', cbername) %}
+{% endif %}
+
+{% block content %}
+  {% if text %}
+    <button {{ attributes }}>{{ text }}</button>
+  {% endif %}
+{% endblock %}

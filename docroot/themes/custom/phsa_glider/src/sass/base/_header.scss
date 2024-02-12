@@ -1,0 +1,10 @@
+/**
+ * For header animation, base on class .js-did-scroll which is added to <body> via JS.
+ */
+.header--main {
+  @apply transition duration-300 ease-in-out translate-y-0;
+
+  body.js-did-scroll & {
+    @apply translate-y-full;
+  }
+}

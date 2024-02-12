@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: icon_card
+label: 'Icon card'
+icon_uuid: null
+icon_default: null
+description: 'Icon Card paragraph'
+behavior_plugins: {  }

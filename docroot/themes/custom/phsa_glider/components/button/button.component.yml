@@ -1,0 +1,77 @@
+$schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.json
+version: 1.0
+name: Button
+status: stable
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      title: Text
+      description: Button text
+      examples:
+        - Button Text
+    style:
+      type: string
+      title: Button style
+      description: Button style type
+      enum:
+        - primary
+        - secondary
+        - tertiary
+      default: primary
+      examples:
+        -
+    size:
+      type: string
+      title: Size
+      description: Button Size
+      enum:
+        - sm
+        - lg
+      default: lg
+      examples:
+    outline:
+      type: boolean
+      title: Outline
+      description: Is the button outlined?
+      default: false
+      examples:
+        -
+    stretch:
+      type: boolean
+      title: Stretch
+      description: Is the link stretched?
+      default: false
+      examples:
+        - false
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Set the disable state of the button.
+      default: false
+      examples:
+        - false
+    dark:
+      type: boolean
+      title: Dark
+      description: Is the button dark?
+      default: false
+      examples:
+        - true
+    className:
+      type: string
+      title: className
+      description: className
+      examples:
+        - my-custom-class
+    props:
+      type: object
+      title: Properties
+      description: Extra attributes for the button
+      examples:
+        - class: my-custom-class
+          id: my-custom-id
+          data-custom: my-custom-data

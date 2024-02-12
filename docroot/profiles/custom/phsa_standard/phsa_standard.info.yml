@@ -1,0 +1,99 @@
+name: PHSA Standard Profile
+type: profile
+description: 'PHSA standard profile'
+core_version_requirement: ^9 || ^10
+config_install: true
+install:
+  # Core modules.
+  - node
+  - block
+  - dblog
+  - help
+  - big_pipe
+  - page_cache
+  - dynamic_page_cache
+  - search
+  - media
+  - media_library
+  - path
+  - views
+  - views_ui
+  - content_moderation
+  - workflows
+  - datetime
+  - image
+  - history
+  - toolbar
+  - contextual
+  - config
+  - menu_ui
+  - options
+  - taxonomy
+  - block_content
+  - breakpoint
+  - ckeditor5
+  - contact
+  - path_alias
+  - menu_link_content
+  - editor
+  - shortcut
+  - field
+  - field_ui
+  - mysql
+  - link
+  - file
+  - tour
+  - automated_cron
+  - entity_reference_revisions
+  - language
+  - token
+  - filter
+  - paragraphs
+  - layout_builder
+  - layout_discovery
+  - responsive_image
+  # Contributed modules.
+  - acsf
+  - acsf_duplication
+  - acsf_sso
+  - acsf_theme
+  - acsf_variables
+  - admin_toolbar
+  - admin_toolbar_tools
+  - admin_toolbar_links_access_filter
+  - features
+  - features_ui
+  - gin_toolbar
+  - config_filter
+  - config_ignore
+  - config_split
+  - samlauth
+  - externalauth
+  - scheduler
+  - crop
+  - focal_point
+  - acquia_search
+  - acquia_connector
+  - search_api_solr
+  - search_api
+  - addtoany
+  - webform
+  - webform_ui
+  - metatag
+  - layout_builder_browser
+  - layout_builder_iframe_modal
+  - layout_builder_operation_link
+  - layoutbuilder_extras
+  # Custom modules.
+  - phsa_core
+  # Features.
+  - phsa_core_configuration
+  - phsa_core_paragraphs
+  - phsa_core_layout_page
+  - phsa_core_article
+  - phsa_core_feedback_form
+themes:
+  - olivero
+  - claro
+  - gin
+  - phsa_glider
