@@ -1,0 +1,47 @@
+include:
+  - '/.gitlab/ci/before-script.yml'
+#  - '/.gitlab/ci/pantheon-multidev-review.yml'
+
+variables:
+  BLT: "vendor/bin/blt"
+  DDEV_PHP_VERSION: "8.1"
+
+cache:
+  - key: "global"
+    paths:
+      - "/mnt/ddev-global-cache"
+
+stages:
+  - validate
+  - deploy
+  - review
+
+validate:
+  stage: validate
+  script:
+    - $BLT --no-interaction validate
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    - when: on_success
+
+deploy:
+  stage: deploy
+  needs: ["validate"]
+  variables:
+    BLT_TARGET: "--${BLT_TARGET_TYPE}=${TARGET}"
+    BLT_MSG: "[${TARGET} (${CI_COMMIT_SHORT_SHA})] ${CI_COMMIT_MESSAGE}"
+  script:
+    - $BLT --no-interaction artifact:deploy -vvv $BLT_TARGET --commit-msg="${BLT_MSG}"
+  rules:
+    - if: $CI_COMMIT_TAG
+      variables:
+        TARGET: "${CI_COMMIT_TAG}"
+        BLT_TARGET_TYPE: "tag"
+    - if: $CI_COMMIT_BRANCH
+      variables:
+        TARGET: "${CI_COMMIT_BRANCH}"
+        BLT_TARGET_TYPE: "branch"
+    - if: $CI_MERGE_REQUEST_ID
+      variables:
+        TARGET: "mr${CI_MERGE_REQUEST_ID}"
+        BLT_TARGET_TYPE: "branch"

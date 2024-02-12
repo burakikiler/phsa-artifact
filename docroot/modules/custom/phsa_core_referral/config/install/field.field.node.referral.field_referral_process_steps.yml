@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_referral_process_steps
+    - node.type.referral
+    - paragraphs.paragraphs_type.referral_step
+  module:
+    - entity_reference_revisions
+id: node.referral.field_referral_process_steps
+field_name: field_referral_process_steps
+entity_type: node
+bundle: referral
+label: 'Referral process steps'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      referral_step: referral_step
+    negate: 0
+    target_bundles_drag_drop:
+      cta:
+        weight: 6
+        enabled: false
+      html:
+        weight: 7
+        enabled: false
+      postcard:
+        weight: 8
+        enabled: false
+      referral_step:
+        weight: 9
+        enabled: true
+      rich_content:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

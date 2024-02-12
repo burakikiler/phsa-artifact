@@ -1,0 +1,35 @@
+# This adds the JS to the rendered page.
+tooltip:
+  version: VERSION
+  js:
+    js/tooltip.js: {}
+  css:
+    component:
+      css/tooltip.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - tooltip/popperjs
+
+popperjs:
+  version: 2.11.8
+  js:
+    https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js: { type: external, minified: true }
+
+# This adds the plugin JavaScript to the page.
+tooltip-editor:
+  js:
+    js/build/tooltip.js: { preprocess: false, minified: true }
+  css:
+    theme:
+      css/tooltip-editor.admin.css: {}
+  dependencies:
+    - core/ckeditor5
+
+# Loaded in the text format configuration form to provide styling for the icon
+# used in toolbar config.
+admin.tooltip-editor:
+  css:
+    theme:
+      css/tooltip-editor.admin.css: {}

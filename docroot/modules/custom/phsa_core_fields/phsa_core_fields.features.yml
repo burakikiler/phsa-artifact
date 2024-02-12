@@ -1,0 +1,4 @@
+bundle: phsa_core
+excluded:
+  - field.field.node.article.field_image
+required: true

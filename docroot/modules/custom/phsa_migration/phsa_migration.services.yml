@@ -1,0 +1,8 @@
+services:
+  plugin.manager.phsa_content_processor:
+    class: Drupal\phsa_migration\PhsaContentProcessorPluginManager
+    parent: default_plugin_manager
+
+  phsa_migration.media_mapping_handler:
+    class: Drupal\phsa_migration\MediaMappingHandler
+    arguments: ['@database']

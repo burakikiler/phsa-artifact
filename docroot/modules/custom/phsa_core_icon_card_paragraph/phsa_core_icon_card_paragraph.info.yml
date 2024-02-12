@@ -1,0 +1,16 @@
+name: 'PHSA Icon Card paragraph'
+type: module
+core_version_requirement: '^9.4 || ^10'
+package: 'PHSA Core'
+dependencies:
+  - 'drupal:field'
+  - 'drupal:link'
+  - 'drupal:media'
+  - 'drupal:media_library'
+  - 'drupal:node'
+  - 'drupal:path'
+  - 'drupal:text'
+  - 'drupal:user'
+  - 'entity_reference_revisions:entity_reference_revisions'
+  - 'paragraphs:paragraphs'
+  - 'phsa_core_fields:phsa_core_fields'

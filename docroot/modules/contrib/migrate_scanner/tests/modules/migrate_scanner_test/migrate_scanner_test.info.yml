@@ -1,0 +1,12 @@
+name: 'Migrate Scanner Test'
+description: 'Support module for the Migrate Scanner module tests.'
+type: module
+package: Testing
+core_version_requirement: ^8.8 || ^9 || ^10
+dependencies:
+  - drupal:migrate_scanner
+
+# Information added by Drupal.org packaging script on 2023-04-08
+version: '1.1.0'
+project: 'migrate_scanner'
+datestamp: 1680968350

@@ -1,0 +1,8 @@
+phsa_media_server.oembed_media_server:
+  path: '/phsa/oembed'
+  defaults:
+    _title: 'Oembed Media Server'
+    _controller: '\Drupal\phsa_media_server\Controller\PhsaMediaServerController::oembed'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'

@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the PHSA Server video.
+ *
+ * Available variables:
+ * - video_url: The url to the video.
+ *
+ * @see template_preprocess_book_navigation()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<video controls style="width: 100%; height: 100%">
+    <source type="video/mp4" src="{{ video_url }}">
+</video>

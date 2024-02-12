@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies: {  }
+id: phsa
+label: 'PHSA migrations'
+description: 'Migration group for PHSA migrations'
+source_type: ''
+module: null
+shared_configuration:
+  source:
+    # We're not going to migrate from another database, but, also, we need to
+    # query the default database to fetch data for some source plugins. If we
+    # don't specify the source key, it'll default to the "migrate" one, and all
+    # the SQL source plugins won't be discovered because there's no migrate db.
+    key: default
+    constants:
+      one: 1
+      zero: 0
+      slash: /
+      langcode_en: 'en'
+      full_html: full_html

@@ -1,0 +1,5 @@
+layoutbuilder_extras.settings_form:
+  title: 'Layout builder extras - settings form'
+  parent: system.admin_config_content
+  description: 'Layout builder extras settings form.'
+  route_name: layoutbuilder_extras.settings_form

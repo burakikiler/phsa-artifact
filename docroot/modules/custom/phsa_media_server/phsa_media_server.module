@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * PHSA Media module functions.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function phsa_media_server_theme($existing, $type, $theme, $path) {
+  return [
+    'phsa_media_server_video' => [
+      'variables' => [
+        'video_url' => NULL,
+      ],
+    ],
+  ];
+}

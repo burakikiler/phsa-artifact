@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.svg.field_media_svg
+    - media.type.svg
+id: media.svg.media_library
+targetEntityType: media
+bundle: svg
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_media_svg: true
+  langcode: true
+  name: true
+  path: true
+  publish_on: true
+  publish_state: true
+  scheduler_settings: true
+  status: true
+  uid: true
+  unpublish_on: true
+  unpublish_state: true
