@@ -1,0 +1,19 @@
+tooltip.block:
+  path: '/tooltip/block/{block_id}'
+  defaults:
+    _controller: '\Drupal\tooltip\Controller\TooltipController::getBlock'
+    _title: 'Tooltip'
+  requirements:
+    _access: 'TRUE'
+
+tooltip.editor_dialog:
+  path: '/editor/dialog/tooltip/{editor}'
+  defaults:
+    _form: '\Drupal\tooltip\Form\EditorTooltipDialog'
+    _title: 'Tooltip'
+  options:
+    parameters:
+      editor:
+        type: entity:editor
+  requirements:
+    _entity_access: 'editor.use'

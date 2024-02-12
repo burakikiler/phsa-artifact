@@ -1,0 +1,9 @@
+services:
+  main_content_renderer.iframe:
+    class: Drupal\layout_builder_iframe_modal\Render\MainContent\IframeRenderer
+    arguments: ['@title_resolver', '@renderer']
+    tags:
+      - { name: render.main_content_renderer, format: drupal_iframe }
+  layout_builder_iframe_modal.helper:
+    class: Drupal\layout_builder_iframe_modal\IframeModalHelper
+    arguments: ['@config.factory']

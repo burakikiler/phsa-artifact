@@ -1,0 +1,20 @@
+{
+    "name": "evolvingweb/desk-tools",
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "^2.0",
+        "composer-runtime-api": "^2.0",
+        "symfony/yaml": "^6.2"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "extra": {
+        "class": "EvolvingWeb\\DESK\\Tools\\Composer\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "EvolvingWeb\\DESK\\Tools\\": "src"
+        }
+    }
+}

@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.legacy_html
+  module:
+    - ckeditor5
+format: legacy_html
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - underline
+      - strikethrough
+      - '|'
+      - alignment
+      - numberedList
+      - bulletedList
+      - '|'
+      - blockQuote
+      - superscript
+      - subscript
+      - '|'
+      - link
+      - sourceEditing
+      - drupalMedia
+      - '|'
+      - tooltip
+  plugins:
+    ckeditor5_alignment:
+      enabled_alignments:
+        - center
+        - justify
+        - left
+        - right
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    media_media:
+      allow_view_mode_override: false
+    tooltip_tooltip:
+      tooltip_label: Tooltip
+      tooltip_hint: 'Displays above selection.'
+image_upload: {  }

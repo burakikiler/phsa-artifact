@@ -1,0 +1,12 @@
+name: 'PHSA Fields'
+type: module
+core_version_requirement: '^9.4 || ^10'
+dependencies:
+  - 'drupal:field'
+  - 'drupal:link'
+  - 'drupal:media'
+  - 'drupal:node'
+  - 'drupal:text'
+  - 'paragraphs:paragraphs'
+  - 'phsa_core:phsa_core_media'
+package: 'PHSA Core'

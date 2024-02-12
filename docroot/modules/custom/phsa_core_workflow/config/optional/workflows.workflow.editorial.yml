@@ -1,0 +1,88 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_moderation
+id: editorial
+label: Editorial
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      label: Draft
+      weight: -3
+      published: false
+      default_revision: false
+    needs_review:
+      label: 'Needs Review'
+      weight: -2
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+    scheduled:
+      label: 'Scheduled for publishing'
+      weight: -1
+      published: false
+      default_revision: false
+    scheduled_for_unpublishing:
+      label: 'Scheduled for unpublishing'
+      weight: 1
+      published: true
+      default_revision: false
+    unpublished:
+      label: Unpublished
+      weight: 2
+      published: false
+      default_revision: true
+  transitions:
+    draft:
+      label: Draft
+      from:
+        - draft
+        - needs_review
+        - published
+        - scheduled
+        - unpublished
+      to: draft
+      weight: -3
+    needs_review:
+      label: 'Needs Review'
+      from:
+        - draft
+        - needs_review
+        - scheduled
+        - unpublished
+      to: needs_review
+      weight: -2
+    publish:
+      label: Publish
+      from:
+        - needs_review
+        - scheduled
+      to: published
+      weight: 0
+    scheduled:
+      label: Scheduled
+      from:
+        - needs_review
+      to: scheduled
+      weight: -1
+    scheduled_for_unpublishing:
+      label: 'Scheduled for unpublishing'
+      from:
+        - published
+      to: scheduled_for_unpublishing
+      weight: 1
+    unpublished:
+      label: Unpublished
+      from:
+        - published
+        - scheduled_for_unpublishing
+      to: unpublished
+      weight: 2
+  entity_types: {  }
+  default_moderation_state: draft

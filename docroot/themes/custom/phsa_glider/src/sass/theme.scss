@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+$include-font: true;
+@import "core";
+
+/*! purgecss start ignore */
+@import "placeholders/index";
+
+/* Site styles */
+@import "utils/index";
+@import "animations/index";
+
+/* Shame */
+@import "shame";
+
+/*! purgecss end ignore */

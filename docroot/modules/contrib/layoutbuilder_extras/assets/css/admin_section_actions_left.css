@@ -1,0 +1,14 @@
+.section-actions__inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-actions a + a {
+    margin-top: 5px;
+}
+
+.section-actions {
+  height: 100%;
+  left: 0;
+  margin-left: -34px;
+}

@@ -1,0 +1,33 @@
+layoutbuilder_extras.settings_form:
+  path: '/admin/config/content/layout-builder-extras-settings'
+  defaults:
+    _form: 'Drupal\layoutbuilder_extras\Form\LayoutBuilderExtrasSettingsForm'
+    _title: 'Layout builder extras'
+  requirements:
+    _permission: 'manage layoutbuilder_extras settings'
+
+layoutbuilder_extras.alter_section:
+  path: '/layoutbuilder_extras/alter/section/{section_storage_type}/{section_storage}/{delta}/{plugin_id}'
+  defaults:
+    _controller: '\Drupal\layoutbuilder_extras\Controller\AlterSectionController::build'
+    _title: 'Alter layout for this section'
+  requirements:
+    _layout_builder_access: 'view'
+  options:
+    _admin_route: TRUE
+    parameters:
+      section_storage:
+        layout_builder_tempstore: TRUE
+
+layoutbuilder_extras.section_actions:
+  path: '/layoutbuilder_extras/section-actions/{section_storage_type}/{section_storage}/{delta}'
+  defaults:
+    _controller: 'Drupal\layoutbuilder_extras\Controller\LayoutBuilderExtrasSectionActionsController::build'
+    _title: 'Choose action'
+  requirements:
+    _layout_builder_access: 'view'
+  options:
+    _admin_route: TRUE
+    parameters:
+      section_storage:
+        layout_builder_tempstore: TRUE

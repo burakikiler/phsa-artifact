@@ -1,0 +1,242 @@
+<?php
+
+/**
+ * @file
+ * Module file for Layout builder extras.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\layoutbuilder_extras\Form\LayoutBuilderExtrasSettingsForm;
+use Drupal\layoutbuilder_extras\LayoutBuilderExtras;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function layoutbuilder_extras_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'layoutbuilder_extras.settings_form':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<br/>' . t('For more information: <a href=":link">Layout builder extras module page</a> .', [':link' => 'https://www.drupal.org/project/layoutbuilder_extras']);
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Adds an extra save and edit button the the supported node forms if allowed.
+ */
+function layoutbuilder_extras_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $lbeConfig = \Drupal::config(LayoutBuilderExtrasSettingsForm::SETTINGSNAME);
+  if ($lbeConfig->get('enable_redirect_on_save')) {
+
+    $node = $form_state->getFormObject()->getEntity();
+    $account = \Drupal::currentUser();
+    $route_name = "layout_builder.overrides.node.view";
+    $route_parameters = [
+      'node' => $node->id(),
+    ];
+
+    // If current user has access to route, then add the operation link. The
+    // access check will only return TRUE if the bundle is Layout Builder-
+    // enabled, overrides are allowed, and user has necessary permissions.
+    $access_manager = \Drupal::service('access_manager');
+    if ($access_manager->checkNamedRoute($route_name, $route_parameters, $account)) {
+        $form['actions']['submit']['#submit'][] = "layoutbuilder_extras_node_submit_redirect_layoutbuilder";
+    }
+  }
+}
+
+/**
+ * Submit handler for the node form.
+ *
+ * Redirects on save to layout builder edit page.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function layoutbuilder_extras_node_submit_redirect_layoutbuilder(array $form, FormStateInterface $form_state) {
+  \Drupal::request()->query->remove('destination');
+  $form_state->setRedirect('layout_builder.overrides.node.view', [
+    'node' => $form_state->getFormObject()
+      ->getEntity()
+      ->id(),
+  ]);
+}
+
+/**
+ * Implements hook_preprocess_layout().
+ *
+ * Preprocess layouts to remove empty divs.
+ */
+function layoutbuilder_extras_preprocess_layout(array &$variables) {
+  $route = \Drupal::routeMatch()->getRouteObject();
+  if ($route === NULL) {
+    return;
+  }
+
+  $isLayoutBuilderRoute = $route->getOption('_layout_builder');
+  $isAdminRoute = $route->getOption('_admin_route');
+
+  $lbeConfig = \Drupal::config(LayoutBuilderExtrasSettingsForm::SETTINGSNAME);
+  if ($isLayoutBuilderRoute || $isAdminRoute) {
+    $regions = array_keys($variables['layout']->getRegions());
+    $skip = [
+      'layout_builder_add_block',
+      '#attributes',
+      'region_label',
+    ];
+
+    foreach ($regions as $region) {
+      if (!isset($variables['content'][$region])) {
+        continue;
+      }
+
+      $currentContentItem = $variables['content'][$region];
+
+      $hasContentBlock = FALSE;
+      foreach ($currentContentItem as $id => $regionItem) {
+        if (in_array($id, $skip)) {
+          continue;
+        }
+
+        if (isset($regionItem['#theme'])) {
+          $hasContentBlock = TRUE;
+          break;
+        }
+      }
+
+      if (!$hasContentBlock) {
+        $variables['region_attributes'][$region]->addClass('empty-region');
+      }
+    }
+  }
+
+  // Second part.
+  if (!$lbeConfig->get('remove_empty_divs')) {
+    return;
+  }
+
+  $isLayoutBuilderRoute = $route->getOption('_layout_builder');
+  if ($isLayoutBuilderRoute) {
+    return;
+  }
+
+  // Sometimes we have:
+  // metadata = [
+  // '#cache' => [...]
+  // nothing else
+  // ];
+  //
+  // this removes this empty array completely so the div's arent printed.
+  // ------
+
+  // Get the items that need to be printed out.
+  $regions = array_keys($variables['layout']->getRegions());
+
+  foreach ($regions as $region) {
+    if (!isset($variables['content'][$region])) {
+      continue;
+    }
+
+    $currentContentItem = $variables['content'][$region];
+
+    foreach ($currentContentItem as $id => $regionItem) {
+      if ($id === '#attributes') {
+        continue;
+      }
+
+      // Checking on content is not reliable! Always check the amount of items
+      // and if there is an cache entry.
+      if (is_array($regionItem) && isset($regionItem['#cache'])) {
+        $isEmptyRegionItem = TRUE;
+        foreach ($regionItem as $regionItemPart) {
+          if (is_array($regionItemPart) &&
+            (isset($regionItemPart['tags']) || isset($regionItemPart['contexts']))) {
+            // SKIP we are in a cache array.
+            continue;
+          }
+
+          if (!empty($regionItemPart)) {
+            $isEmptyRegionItem = FALSE;
+            break;
+          }
+        }
+
+        if (!$isEmptyRegionItem) {
+          continue;
+        }
+
+        unset($variables['content'][$region][$id]);
+
+        // Remove the whole parent as well if it only contains '#attributes'.
+        if (count($variables['content'][$region]) === 1 &&
+          isset($variables['content'][$region]['#attributes'])) {
+
+          unset($variables['content'][$region]['#attributes']);
+        }
+
+        // To remove an empty 'first' array as well.
+        if (empty($variables['content'][$region])) {
+          unset($variables['content'][$region]);
+        }
+      }
+    }
+  }
+
+  // To remove content variable when all is empty so nothing gets rendered.
+  $hasRegions = FALSE;
+  foreach ($regions as $region) {
+    if (isset($variables['content'][$region])) {
+      $hasRegions = TRUE;
+    }
+  }
+  if (!$hasRegions) {
+    $variables['content'] = [];
+  }
+
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function layoutbuilder_extras_page_attachments(array &$attachments) {
+  $lbeConfig = \Drupal::config(LayoutBuilderExtrasSettingsForm::SETTINGSNAME);
+  if (!$lbeConfig->get('enable_drag_handle_icon')) {
+    return;
+  }
+
+  $attachments['#attached']['library'][] = 'layoutbuilder_extras/drag_handle';
+}
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ * Add my own class so I can alter the add links for better UI/UX theming.
+ *
+ * @param array $types
+ */
+function layoutbuilder_extras_element_info_alter(array &$types) {
+  $types['layout_builder']['#pre_render'][] =
+    [\Drupal\layoutbuilder_extras\LayoutBuilderElementOverride::class, 'preRenderOverride'];
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * Make sure my implements of info_later comes last.
+ *
+ * @param $implementations
+ * @param $hook
+ */
+function layoutbuilder_extras_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'element_info_alter') {
+    $group = $implementations['layoutbuilder_extras'];
+    unset($implementations['layoutbuilder_extras']);
+    $implementations['layoutbuilder_extras'] = $group;
+  }
+}

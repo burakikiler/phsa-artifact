@@ -1,0 +1,10 @@
+services:
+  layoutbuilder_extras.route_subscriber:
+    class: Drupal\layoutbuilder_extras\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  layoutbuilder_extras.contextual_link_manager:
+    class: Drupal\layoutbuilder_extras\Menu\ContextualLinkManager
+    decorates: plugin.manager.menu.contextual_link
+    decoration_priority: 1
+    arguments: ['@layoutbuilder_extras.contextual_link_manager.inner', '@controller_resolver', '@module_handler', '@cache.discovery', '@language_manager', '@access_manager', '@current_user', '@request_stack', '@config.factory']

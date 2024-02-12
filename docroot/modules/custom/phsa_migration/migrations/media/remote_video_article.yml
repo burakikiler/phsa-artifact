@@ -1,0 +1,30 @@
+id: remote_video_article
+label: 'PHSA Article Video'
+langcode: en
+status: true
+dependencies: {  }
+
+migration_tags:
+  - article
+  - media
+migration_group: phsa
+
+source:
+  plugin: external_media_mapping
+  file_type: remote_video
+  source_bundle: news
+
+process:
+  bundle:
+    plugin: default_value
+    default_value: remote_video
+
+  field_media_oembed_video/0/value: url
+
+destination:
+  plugin: entity:media
+
+migration_dependencies:
+  required: { }
+  optional:
+    - phsa_article

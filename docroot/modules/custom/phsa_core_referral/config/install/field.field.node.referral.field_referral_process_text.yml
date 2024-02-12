@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_referral_process_text
+    - node.type.referral
+  module:
+    - text
+id: node.referral.field_referral_process_text
+field_name: field_referral_process_text
+entity_type: node
+bundle: referral
+label: 'Referral process text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
