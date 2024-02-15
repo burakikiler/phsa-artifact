@@ -3,7 +3,7 @@
         'name' => 'evolvingweb/drupal-project',
         'pretty_version' => 'dev-github-actions',
         'version' => 'dev-github-actions',
-        'reference' => '468dbaf351819aa61a52248f9ae508dacf124aa1',
+        'reference' => 'ec5c71743968a1b925919d4b8e096aaaee9e19e6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1036,7 +1036,7 @@
         'evolvingweb/drupal-project' => array(
             'pretty_version' => 'dev-github-actions',
             'version' => 'dev-github-actions',
-            'reference' => '468dbaf351819aa61a52248f9ae508dacf124aa1',
+            'reference' => 'ec5c71743968a1b925919d4b8e096aaaee9e19e6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
