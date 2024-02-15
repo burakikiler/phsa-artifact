@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the PHSA Migration module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function phsa_migration_schema() {
+  $schema['phsa_migration_media_mapping'] = [
+    'description' => 'Table used to keep the mapping of all media files found while processing content.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Unique record ID.',
+      ],
+      'url' => [
+        'description' => 'The file external URL.',
+        'type' => 'varchar',
+        'length' => 512,
+        'not null' => TRUE,
+      ],
+      'file_type' => [
+        'description' => 'The media file type.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ],
+      'file_name' => [
+        'description' => 'The media file name.',
+        'type' => 'varchar',
+        'length' => 256,
+      ],
+      'source_bundle' => [
+        'description' => 'This field records the source ID or migration name linked to the file\'s discovery.',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'url' => ['url'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function phsa_migration_uninstall($syncing) {
+  \Drupal::database()->schema()->dropTable('phsa_migration_media_mapping');
+}

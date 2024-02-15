@@ -1,0 +1,4 @@
+bundle: phsa_core
+excluded:
+  - field.storage.node.body
+required: true

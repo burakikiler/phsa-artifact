@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$IS_DDEV_PROJECT" = true ] ; then
+  echo 'Pushing from inside the container'
+  /var/www/html/vendor/acquia/blt/scripts/git-hooks/pre-push $@;
+  exit $?
+else
+  echo 'Pushing from outside of the container'
+  ddev exec /var/www/html/vendor/acquia/blt/scripts/git-hooks/pre-push $@;
+  exit $?
+fi

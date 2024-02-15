@@ -1,0 +1,31 @@
+{
+    "name": "evolvingweb/desk-acquia",
+    "type": "project",
+    "require": {
+        "composer-plugin-api": "^2.0",
+        "composer-runtime-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "file-mapping": {
+                "[project-root]/hooks/common/post-code-deploy/post-code-deploy.sh": "assets/common/post-code-deploy/post-code-deploy.sh",
+                "[project-root]/hooks/common/post-code-update/post-code-update.sh": "assets/common/post-code-update/post-code-update.sh",
+                "[project-root]/hooks/common/post-db-copy/db-scrub.sh": "assets/common/post-db-copy/db-scrub.sh",
+                "[project-root]/hooks/common/post-db-copy/post-db-copy.sh": "assets/common/post-db-copy/post-db-copy.sh",
+                "[project-root]/hooks/common/post-files-copy/post-files-copy.sh": "assets/common/post-files-copy/post-files-copy.sh",
+                "[project-root]/hooks/dev/post-db-copy/.gitignore": "assets/dev/post-db-copy/.gitignore",
+                "[project-root]/hooks/dev/post-code-deploy/.gitignore": "assets/dev/post-code-deploy/.gitignore",
+                "[project-root]/hooks/dev/post-files-copy/.gitignore": "assets/dev/post-files-copy/.gitignore",
+                "[project-root]/hooks/prod/post-db-copy/.gitignore": "assets/prod/post-db-copy/.gitignore",
+                "[project-root]/hooks/prod/post-code-deploy/.gitignore": "assets/prod/post-code-deploy/.gitignore",
+                "[project-root]/hooks/prod/post-files-copy/.gitignore": "assets/prod/post-files-copy/.gitignore",
+                "[project-root]/hooks/test/post-db-copy/.gitignore": "assets/test/post-db-copy/.gitignore",
+                "[project-root]/hooks/test/post-code-deploy/.gitignore": "assets/test/post-code-deploy/.gitignore",
+                "[project-root]/hooks/test/post-files-copy/.gitignore": "assets/test/post-files-copy/.gitignore"
+            }
+        }
+    }
+}

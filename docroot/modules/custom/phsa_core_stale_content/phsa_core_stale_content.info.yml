@@ -1,0 +1,9 @@
+name: 'Stale content'
+description: 'Provides the stale content functionality.'
+type: module
+core_version_requirement: '^9.4 || ^10'
+dependencies:
+  - drupal:node
+  - drupal:user
+  - drupal:views
+package: 'PHSA Core'

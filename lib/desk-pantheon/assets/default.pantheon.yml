@@ -1,0 +1,40 @@
+# For more information, see: https://pantheon.io/docs/pantheon-yml/
+api_version: 1
+
+# PHP Version:
+# https://pantheon.io/docs/pantheon-yml#php-version
+php_version: 8.1
+
+# Nested Docroot
+# https://pantheon.io/docs/pantheon-yml#nested-docroot
+web_docroot: true
+
+# Disable integrated composer
+# https://docs.pantheon.io/pantheon-yml#integrated-composer-build-step
+build_step: false
+
+# MariaDB version
+# https://docs.pantheon.io/pantheon-yml#specify-a-version-of-mariadb
+database:
+  version: 10.6
+
+# Quicksilver scripts
+workflows:
+  # When code is pushed
+  sync_code:
+    after:
+      - type: webphp
+        description: Run drush deploy
+        script: private/scripts/drush_deploy.php
+  # When code is deployed to test or live
+  deploy:
+    after:
+      - type: webphp
+        description: Run drush deploy
+        script: private/scripts/drush_deploy.php
+  # When a multidev environment gets created
+  create_cloud_development_environment:
+    after:
+      - type: webphp
+        description: Run drush deploy
+        script: private/scripts/drush_deploy.php

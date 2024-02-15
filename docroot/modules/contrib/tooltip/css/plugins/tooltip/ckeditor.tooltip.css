@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Tooltip: add styling for elements that have a tooltip attribute.
+ */
+[data-tooltip] {
+  border-bottom: 1px black dotted;
+}
+[data-tooltip]::after {
+  content: '';
+  background-image: url(../../../js/plugins/tooltip/icons/tooltip.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 0.55rem;
+  height: 0.55rem;
+  display: inline-block;
+  position: relative;
+  bottom: 1em;
+  font-size: 0.5em;
+  padding-right: 2px;
+  padding-left: 2px;
+}

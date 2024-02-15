@@ -1,0 +1,13 @@
+.section-actions {
+    display: flex;
+    justify-content: center;
+
+    left: 0;
+    right: 0;
+
+    top: -15px;
+}
+
+.section-actions__inner {
+    flex-direction: row;
+}

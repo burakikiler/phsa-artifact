@@ -1,0 +1,11 @@
+section_actions_position: left
+enable_redirect_on_save: 0
+enable_configure_ajax_save: 0
+remove_empty_divs: 0
+enable_drag_handle_icon: 1
+enable_admin_css: 0
+contextual_links_only_lb: 0
+contextual_links_roles:
+  anonymous: 0
+  authenticated: 0
+  administrator: 0

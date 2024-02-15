@@ -1,0 +1,9 @@
+{
+  "name": "drupal/tooltip",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "description": "Display anything you want in a tooltip on your Drupal site.",
+  "require": {
+    "drupal/ckeditor": "^1.0"
+  }
+}

@@ -1,0 +1,182 @@
+/* GENERIC */
+#layout-builder {
+  border: 0;
+  padding: 0;
+}
+.layout-builder__layout .layout-builder__region {
+  outline: none;
+}
+.layout-builder__section:hover > .layout {
+  outline: 2px dashed var(--layout_builder_extras_blue);
+}
+.layout-builder__section:hover .layout-builder__region + .layout-builder__region {
+  border-left: 2px dashed var(--layout_builder_extras_blue);;
+  box-sizing: border-box;
+}
+
+/* BELOW ALL FOR THE ADD SECTION OVERRIDE */
+.layout-builder .layout-builder__add-block,
+.layout-builder .layout-builder__add-section {
+  outline: none;
+  background: none;
+  margin-bottom: 0;
+}
+
+.layout-builder .layout-builder__add-section:before {
+  content: " ";
+  border-bottom: 1px solid var(--layout_builder_extras_blue);
+  z-index: 0;
+
+  width: 100%;
+  display: block;
+
+  transform: scaleX(0) translateY(13px);
+  transition: transform 250ms ease-in-out;
+  transform-origin: center;
+
+  pointer-events: none;
+}
+
+.layout-builder .layout-builder__add-section:hover:before {
+  transform: scaleX(1) translateY(13px);
+}
+
+.layout-builder__add-block a,
+.layout-builder__add-section a {
+  padding: 0;
+  margin: 0;
+
+  display: inline-block;
+
+  min-height: 25px;
+  min-width: 100%;
+}
+
+.layout-builder__add-block a {
+  padding-bottom: 10px;
+}
+
+.layout-builder__link--add:before,
+.layout-builder__add-section .toggle-section-actions:before,
+.layout-builder__add-block a:before {
+  content: "+";
+  z-index: 1;
+  display: inline-block;
+
+  width: 25px;
+  height: 25px;
+
+  background: var(--layout_builder_extras_blue);
+  border-radius: 50%;
+  border: none;
+  color: var(--layout_builder_extras_white);
+  font-size: 2rem !important;
+  font-weight: 700;
+  padding: 0;
+  line-height: 24px !important;
+
+  opacity: 40%;
+}
+
+/* Reset some default button styling */
+.toggle-section-actions {
+  border: none !important;
+  padding: 0 !important;
+}
+
+.layout-builder__add-block a:before {
+  opacity: 0;
+  transition: .5s all ease-in-out;
+}
+
+.layout-builder__add-section:hover .layout-builder__link--add:before {
+  opacity: 1;
+}
+
+.layout-builder__section:hover .layout-builder__add-block a:before {
+  opacity: 40%;
+}
+
+.layout-builder__section .layout-builder__add-block:hover a:before {
+  opacity: 1;
+}
+
+.layout-builder__add-section:hover:after {
+  opacity: 0;
+}
+
+.layout-builder__add-section:hover a {
+  color: var(--layout_builder_extras_white);
+  opacity: 1;
+}
+
+.layout-builder__add-section + .layout-builder__section {
+  margin-top: 20px;
+}
+
+/* END ADD SECTION */
+
+
+/* Edit / Remove / ... icons move to left */
+.layout-builder__section .layout-builder__link--remove {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.layout-builder__section .layout-builder__link--configure {
+  text-indent: -9999999px !important;
+  background-color: var(--layout_builder_extras_white) !important;
+}
+
+.layout-builder__link--configure:hover {
+  background-image: url(/core/misc/icons/787878/cog.svg);
+}
+.section-actions .layout-builder__link--remove:hover {
+  background-image: url(/core/misc/icons/e32700/error.svg);
+  background-size: 26px;
+  border: 0;
+}
+/* END MOVE SECTION ICONS */
+.layout-builder__section {
+  position: relative;
+}
+
+.section-actions__inner {
+  position: sticky;
+  top: 6rem;
+
+  display: flex;
+}
+
+.section-actions {
+  z-index: 5;
+  opacity: 0;
+
+  position: absolute;
+  top: 0;
+
+  transition: .5s all ease-in-out;
+}
+
+.layout-builder__section:hover .section-actions {
+  opacity: 1;
+}
+
+.layout-builder .layout-builder__link--add {
+  background: none;
+}
+
+.layout-builder__section .layout-builder__link--add-section-to-library {
+  margin-left: 0;
+  background-color: var(--layout_builder_extras_white);
+
+  /* align with core */
+  text-indent: -9999999px;
+  border: 1px solid #ccc;
+  border-radius: 26px;
+  width: 26px;
+  height: 26px;
+  position: relative;
+
+  z-index: 2;
+}

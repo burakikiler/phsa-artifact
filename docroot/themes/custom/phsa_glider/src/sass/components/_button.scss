@@ -1,0 +1,24 @@
+@layer components {
+  .btn {
+    --border-color: transparent;
+    --bg-color: transparent;
+    --py: theme(spacing.3);
+    --px: theme(spacing.6);
+    --text-color: theme(colors.black);
+
+    @apply rounded border border-solid border-[var(--border-color)]
+    bg-[var(--bg-color)] px-[var(--px)] py-[var(--py)]
+    text-lg text-[var(--text-color)] font-medium leading-normal uppercase
+    shadow-none transition;
+
+    // &-primary {
+    //   --border-color: theme(colors.primary);
+    //   --bg-color: theme(colors.primary);
+    //   --text-color: theme(colors.white);
+    // }
+
+    // &-secondary {
+    //   --border-color: theme(colors.secondary);
+    // }
+  }
+}

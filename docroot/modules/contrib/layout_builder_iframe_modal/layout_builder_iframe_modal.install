@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ *
+ * uswds_blb_configuration.install
+ */
+
+
+/**
+ * Implements hook_update().
+ *
+ * Set default value for new config.
+ */
+function layout_builder_iframe_modal_update_8101() {
+  $config = \Drupal::service('config.factory')->getEditable('layout_builder_iframe_modal.settings');
+  $options = [
+    'configure_section' => 'layout_builder.configure_section',
+    'remove_section' => 'layout_builder.remove_section',
+    'remove_block' => 'layout_builder.remove_block',
+    'add_section' => 'layout_builder.add_section',
+    'add_block' => 'layout_builder.add_block',
+    'update_block' => 'layout_builder.update_block',
+    'move_sections_form' => 'layout_builder.move_sections_form',
+    'move_block_form' => 'layout_builder.move_block_form',
+    'translate_block' => 'layout_builder.translate_block',
+    'translate_inline_block' => 'layout_builder.translate_inline_block',
+  ];
+  $final_options = [];
+  foreach ($options as $option) {
+    array_push($final_options, 'layout_builder.' . $option);
+  }
+  $config->set('layout_builder_iframe_routes', $final_options);
+  $config->save();
+
+}

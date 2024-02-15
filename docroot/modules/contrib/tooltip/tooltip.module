@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * A module to craft beautiful Tooltips.
+ */
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\EventSubscriber\AjaxResponseSubscriber;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\block\BlockInterface;
+use Drupal\tooltip\TooltipBlockPluginInterface;
+
+/**
+ * Implements hook_help().
+ */
+function tooltip_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.tooltip':
+      $uri = 'https://www.drupal.org/docs/contributed-modules/tooltip';
+      $link = Link::FromTextAndUrl(t('the online documentation '), Url::fromUri($uri, [
+        'attributes' => ['target' => '_blank'],
+      ]))->toString();
+
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('There is quite a lot to say about this module') . '</p>';
+      $output .= '<p>' . t('Please, read @link to learn how to use it', ['@link' => $link]) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function tooltip_block_view_alter(array &$build, BlockPluginInterface $plugin) {
+  // If Ajax, [data-tooltip-id] will be set by tooltip.js
+  $is_ajax = \Drupal::request()->get(AjaxResponseSubscriber::AJAX_REQUEST_PARAMETER);
+  if ($is_ajax) {
+    return;
+  }
+
+  // Set attribute to instanciate blocks placed on front.
+  $block = $build['#block'] ?? NULL;
+  if ($block instanceof BlockInterface && $plugin instanceof TooltipBlockPluginInterface) {
+    if (!isset($build['#attributes']['data-tooltip-id'])) {
+      // Extra safety check for edge cases where $block is not what we expect. 
+      // @see https://www.drupal.org/project/tooltip/issues/3341714#comment-15062326
+      if (method_exists($block, 'uuid')) {
+        $build['#attributes']['data-tooltip-id'] = $block->uuid();
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+name: PHSA Core
+type: module
+description: Core PHSA module.
+package: phsa
+core_version_requirement: ^9 || ^10
+dependencies: { }

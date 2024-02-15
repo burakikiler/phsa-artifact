@@ -1,0 +1,26 @@
+project:
+  machine_name: phsa
+  profile:
+    name: phsa_standard
+  prefix: BLT
+cloud:
+  appId: 0b29976f-f807-45f6-b200-3d33cfc0a2bf
+git:
+  default_branch: master
+  remotes:
+    cloud: 'git@github.com:burakikiler/phsa-artifact.git'
+  commit-msg:
+    pattern: '/(^refs #[0-9]+(: )[^ ].{15,}\.)|(^refs [AZ]+-[0-9]+(: )[^ ].{15,}\.)|(Merge branch (.)+)/'
+    help_description: 'The commit message should start with refs, followed by a # and ticket number, followed by a colon and a space, fifteen characters or more describing the commit, and end with a period.'
+    example: 'refs #123: Update site configuration.'
+
+deploy:
+  tag_source: false
+validate:
+  twig:
+    functions:
+      - drupal_entity
+      - pattern
+    filters:
+      - truncate
+      - view

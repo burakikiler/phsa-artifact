@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+id: phsa
+label: PHSA
+provider_url: 'https://media.phsa.ca'
+endpoints:
+  -
+    schemes:
+      - 'https://media.phsa.ca/home/iframe?url=*'
+    url: 'https://phsa.ddev.site/phsa/oembed'
+    discovery: false
+    formats:
+      json: true
+      xml: false

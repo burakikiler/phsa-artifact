@@ -1,0 +1,18 @@
+default:
+  image: docker.io/drud/ddev-webserver:v1.21.5
+  before_script:
+    - .gitlab/ci/scripts/init.sh
+    # Configure SSH
+    # (See https://docs.gitlab.com/ee/ci/ssh_keys/)
+    - eval $(ssh-agent -s)
+    - if [ -z ${SSH_PRIVATE_KEY+x} ]; then echo "SSH_PRIVATE_KEY is undefined" ; else echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null ; fi
+    - mkdir -p $HOME/.ssh && echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
+    # Configure git
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "Gitlab CI"
+    # Prepare NVM
+    - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
+    # Install dependencies
+    - composer install
+    # Configure BLT
+    - $BLT blt:telemetry:disable

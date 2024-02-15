@@ -1,0 +1,28 @@
+review_start:
+  stage: review
+  needs: ["deploy"]
+  environment:
+    name: "mr${CI_MERGE_REQUEST_ID}"
+    url: "http://mr${CI_MERGE_REQUEST_ID}-${PANTHEON_SITE_NAME}.pantheonsite.io/"
+    on_stop: "review_stop"
+  script:
+    - echo "Start multidev"
+    - terminus auth:login --machine-token="${TERMINUS_MACHINE_TOKEN}" || ( echo "terminus auth login failed, check your TERMINUS_MACHINE_TOKEN" && exit 1 )
+    - terminus env:info ${PANTHEON_SITE_NAME}.mr${CI_MERGE_REQUEST_ID} || terminus multidev:create ${PANTHEON_SITE_NAME}.dev mr${CI_MERGE_REQUEST_ID}
+  rules:
+    - if: $CI_MERGE_REQUEST_ID && $PANTHEON_SITE_NAME
+      when: manual
+
+review_stop:
+  stage: review
+  environment:
+    name: "mr${CI_MERGE_REQUEST_ID}"
+    url: "https://mr${CI_MERGE_REQUEST_ID}-${PANTHEON_SITE_NAME}.pantheonsite.io/"
+    action: stop
+  script:
+    - echo "Cleanup multidev"
+    - terminus auth:login --machine-token="${TERMINUS_MACHINE_TOKEN}" || ( echo "terminus auth login failed, check your TERMINUS_MACHINE_TOKEN" && exit 1 )
+    - terminus env:info ${PANTHEON_SITE_NAME}.mr${CI_MERGE_REQUEST_ID} && terminus multidev:delete --delete-branch ${PANTHEON_SITE_NAME}.mr${CI_MERGE_REQUEST_ID} -y
+  rules:
+    - if: $CI_MERGE_REQUEST_ID && $PANTHEON_SITE_NAME
+      when: manual
