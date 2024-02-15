@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'evolvingweb/drupal-project',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-github-actions',
+        'version' => 'dev-github-actions',
+        'reference' => '468dbaf351819aa61a52248f9ae508dacf124aa1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1034,9 +1034,9 @@
             'dev_requirement' => false,
         ),
         'evolvingweb/drupal-project' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-github-actions',
+            'version' => 'dev-github-actions',
+            'reference' => '468dbaf351819aa61a52248f9ae508dacf124aa1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
